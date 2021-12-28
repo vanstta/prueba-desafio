@@ -26,7 +26,7 @@ export const init = async() => {
    
 
     const usuarios = await obtenerUsuarios();
-   
+
     const {total_pages, usuariosPaginados} = getPaginado(usuarios, 1);
     let dataUsuario = usuariosPaginados;
     crearCardUsuario(dataUsuario)
@@ -47,8 +47,10 @@ export const init = async() => {
          button.onclick= function () {
             dataUsuario = getPaginado(usuarios, i ).usuariosPaginados
             crearCardUsuario(dataUsuario)
+            
          }
      }    
+ordenarUsers(dataUsuario)
 }
 
 const crearCardUsuario = (dataUsuario) => {
@@ -58,27 +60,18 @@ const crearCardUsuario = (dataUsuario) => {
   
   
   usuarioContainer.innerHTML = dataUsuario
-    // const {
-    //     picture: {large},
-    //     name: {first},
-    //     name: {last},
-    //     location: {city},
-    //     location: {state},
-    //     location: {postcode},
-    //     registered: {age}
 
-    //     } = usuario
       .map(
         
-        ({ name, picture, location, registered }) => ` <div class="cardUsuario"> 
-        <img class="foto" src="${picture.large}" alt="persona">
+        ({ name:{first}, name:{last},picture:{large}, location:{city}, location:{state}, location: {postcode}, registered: {age}}) => ` <div class="cardUsuario"> 
+        <img class="foto" src="${large}" alt="persona">
         <div class="cardDatos">
-            <h3 class="nombre">${name.first} ${name.last}</h3>
-            <i class="fas fa-filter puesto">Recruitment Consultancy</i>
-            <i class="fas fa-map-marker-alt ciudad">${location.city}, ${location.state} ${location.postcode} </i>
+            <h3 class="nombre">${first} ${last}</h3>
+            <i class="fas fa-filter ">Recruitment Consultancy</i>
+            <i class="fas fa-map-marker-alt ciudad">${city}, ${state} ${postcode} </i>
             <hr>
             <div>
-                <i class="far fa-clock activo">Activo hace: ${registered.age} años</i>
+                <i class="far fa-clock activo">Active since: ${age} Y ago</i>
                 <i class="far fa-heart"></i>
             </div>
             
@@ -89,13 +82,14 @@ const crearCardUsuario = (dataUsuario) => {
   
       .join("");
   
-    console.log("user::", dataUsuario);
-  
+
   };
 
 
 const inputBuscar =document.getElementById('buscar')
 const tarjeta = document.getElementsByClassName('cardUsuario')
+
+//agrego filtro para buscar por nombre
 
 inputBuscar.addEventListener('keyup', (e)=> {
     let texto= e.target.value;
@@ -107,12 +101,39 @@ inputBuscar.addEventListener('keyup', (e)=> {
         if(er.test(valor.innerText)) {
             valor.classList.remove('ocultar')
         }else {
-            console.log(valor)
+            
             valor.classList.add('ocultar')
         }
     }
 
 
 })
+
+
+const ordenarUsers = async () => {
+    let usuariosNombres = await obtenerUsuarios();
+    const arrayNombres= usuariosNombres.map(item=>item.name)
+    
+    arrayNombres.sort((a, b)=> {
+      
+        if (a.first< b.first) {
+            return -1
+        } if (a.first> b.first) {
+            return 1
+        }
+        return 0
+    })
+    
+
+    const asc = document.querySelector('#uno')
+    let dataUsuario = arrayNombres
+    asc.onclick= function () {
+
+    
+    dataUsuario = getPaginado(usuarios, 1).usuariosPaginados
+    crearCardUsuario(dataUsuario)
+   
+ }
+}
 
 

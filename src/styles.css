@@ -1,12 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&family=Roboto&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     background-color: rgb(192, 192, 192);
     
+}
+
+#buscar {
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 .divSearch {
@@ -20,6 +28,18 @@ input {
 
 .divSearch p {
     margin-left: 10px;
+}
+
+.form-orden {
+    display: flex;
+    justify-content: end;
+    margin-right: 11.5%;
+    padding-top: 5%;
+    
+}
+
+select {
+    padding: 10px;
 }
 
 img {
@@ -38,6 +58,12 @@ img {
     bottom: 5px ;
     line-height: 30px;
     padding: 10px 10px;
+    
+}
+
+
+.puesto {
+    font-family: 'Roboto', sans-serif;
 }
 
 #card {
@@ -49,8 +75,8 @@ img {
 }
 
 .cardUsuario {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin: 10px 10px;
+    
 }
 
 hr {
@@ -76,10 +102,6 @@ h3 {
     display: none;
 }
 
-#buscar {
-    margin-top: 15px;
-    margin-left: 15px;
-}
 
 .buttonContainer {
     display: flex;

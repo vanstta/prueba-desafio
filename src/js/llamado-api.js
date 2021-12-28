@@ -1,6 +1,7 @@
 const url = 'https://www.mockachino.com/a71b232c-218e-4d/users'
 
 
+//llamado a la api
 export const obtenerUsuarios = async() => {
 
   try {
@@ -10,8 +11,8 @@ export const obtenerUsuarios = async() => {
 
    const data = await respuesta.json();
    const usuarios = data.results
-   
-    return usuarios;
+ 
+   return usuarios;
 
    }catch(err) {
   
@@ -20,6 +21,8 @@ export const obtenerUsuarios = async() => {
 
 
 }
+
+//creo la función para mostrar 10 usuarios por página
 
 export const getPaginado = (usuarios, pages) => {
     const page = pages || 1;
@@ -31,3 +34,4 @@ export const getPaginado = (usuarios, pages) => {
    
     return {usuariosPaginados, total_pages}
  }
+
