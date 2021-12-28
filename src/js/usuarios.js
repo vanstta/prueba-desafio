@@ -125,15 +125,18 @@ const ordenarUsers = async () => {
     })
     
 
-    const asc = document.querySelector('#uno')
-    let dataUsuario = arrayNombres
-    asc.onclick= function () {
-
     
-    dataUsuario = getPaginado(usuarios, 1).usuariosPaginados
+    const asc = document.getElementById('select')
+    let dataUsuario = arrayNombres;
+    asc.addEventListener('change', (event)=>{
+        
+         console.log('click')
+         dataUsuario = getPaginado(arrayNombres, 1).usuariosPaginados
     crearCardUsuario(dataUsuario)
+    })
+    
    
- }
+ 
 }
 
 
