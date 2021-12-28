@@ -45,9 +45,10 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 85%;
 }
 
-.user {
+.cardUsuario {
     margin-left: 10px;
     margin-bottom: 10px;
 }
@@ -80,7 +81,13 @@ h3 {
     margin-left: 15px;
 }
 
-.botones-paginado {
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    padding: 50px 50px;
+}
+
+.botonesPaginado {
     width: 50px;
     height: 50px;
     background-color: white;
@@ -91,7 +98,7 @@ h3 {
     border: none;
 }
 
-.botones-paginado:hover{
+.botonesPaginado:hover{
     background-color: rgb(6, 155, 255);
     color: white;
 }
